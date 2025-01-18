@@ -83,7 +83,7 @@ def scatter_3D(a, cmap="jet", sca_args=None, control="color", size=60):
             s=size,
             **scatter_args
         )
-        plt.colorbar(sm)
+        plt.colorbar(sm, cax=plt.axes([0.88, 0.1, 0.05, 0.7]))
 
     if control == "alpha":
         # untested #
@@ -93,7 +93,7 @@ def scatter_3D(a, cmap="jet", sca_args=None, control="color", size=60):
 
     if control == "size":
         sizes = (a - a.min()) * size / a.ptp()
-        ax.scatter(x, y, z, a, s=sizes, **scatter_args)
+        ax.scatter(x, y, z, s=sizes, **scatter_args)
         ax_scale = plt.axes([0.88, 0.1, 0.05, 0.7])
         # ax_scale.set_ylim((0.1,1.2))
         nm = 5
@@ -332,11 +332,11 @@ def quiver_3D(
 
     # plotting
     fig = plt.figure()
-    ax = fig.gca(projection="3d", rasterized=True)
+    ax = fig.add_subplot(projection="3d", rasterized=True)
     ax.quiver(
         xf, yf, zf, vf * scale, uf * scale, wf * scale, colors=colors, **quiver_args
     )
-    plt.colorbar(sm)
+    plt.colorbar(sm, cax=plt.axes([0.88, 0.1, 0.05, 0.7]))
 
     ax.set_xlim(ax_dims[0])
     ax.set_ylim(ax_dims[1])
@@ -348,8 +348,8 @@ def quiver_3D(
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     ax.set_zlabel("z")
-    ax.w_xaxis.set_pane_color((0.2, 0.2, 0.2, 1.0))
-    ax.w_yaxis.set_pane_color((0.2, 0.2, 0.2, 1.0))
-    ax.w_zaxis.set_pane_color((0.2, 0.2, 0.2, 1.0))
+    #ax.w_xaxis.set_pane_color((0.2, 0.2, 0.2, 1.0))
+    #ax.w_yaxis.set_pane_color((0.2, 0.2, 0.2, 1.0))
+    #ax.w_zaxis.set_pane_color((0.2, 0.2, 0.2, 1.0))
 
     return fig
