@@ -191,6 +191,7 @@ def display_vector_field(
     ax: Optional[Any] = None,
     width: Optional[float] = 0.0025,
     show_invalid: Optional[bool] = True,
+    show_plot: Optional[bool] = False,
     **kw
 ):
     """ Displays quiver plot of the data stored in the file 
@@ -302,8 +303,9 @@ def display_vector_field(
 
     ax.set_aspect(1.)
     # fig.canvas.set_window_title('Vector field, '+str(np.count_nonzero(invalid))+' wrong vectors')
-
-    plt.show()
+    
+    if show_plot:
+        plt.show()
 
     return fig, ax
 
