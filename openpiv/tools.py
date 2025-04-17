@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import sys
 import pathlib
 import multiprocessing
-from typing import Any, Union, List, Optional
+from typing import Any, Union, List, Optional, Tuple
 # import re
 
 import numpy as np
@@ -56,7 +56,7 @@ def display_vector_field_from_arrays(
     mask: np.ndarray,
     on_img: Optional[bool] = False,
     image_name: Optional[Union[pathlib.Path, str]] = None,
-    window_size: Optional[int] = 32,
+    window_size: Optional[Union[int, Tuple[int, int]]] = 32,
     scaling_factor: Optional[float] = 1.,
     ax: Optional[Any] = None,
     width: Optional[float] = 0.0025,
@@ -129,11 +129,14 @@ def display_vector_field_from_arrays(
     else:
         fig = ax.get_figure()
 
+    if isinstance(window_size, int):
+        window_size = (window_size, window_size)
+
     if on_img is True:  # plot a background image
         im = imread(image_name)
         im = negative(im)  # plot negative of the image for more clarity
-        xmax = np.amax(x) + window_size / (2 * scaling_factor)
-        ymax = np.amax(y) + window_size / (2 * scaling_factor)
+        xmax = np.amax(x) + window_size[1] / (2 * scaling_factor)
+        ymax = np.amax(y) + window_size[0] / (2 * scaling_factor)
         ax.imshow(im, cmap="Greys_r", extent=[0.0, xmax, 0.0, ymax])
 
     # first mask whatever has to be masked

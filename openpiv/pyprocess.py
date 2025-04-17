@@ -1068,7 +1068,7 @@ def extended_search_area_piv(
     if search_area_size[0] < window_size[0] or search_area_size[1] < window_size[1]:
         raise ValueError("Search size cannot be smaller than the window_size")
 
-    if (window_size[1] > frame_a.shape[0]) or (window_size[0] > frame_a.shape[1]):
+    if (window_size[1] > frame_a.shape[1]) or (window_size[0] > frame_a.shape[0]):
         raise ValueError("window size cannot be larger than the image")
 
     # get field shape
