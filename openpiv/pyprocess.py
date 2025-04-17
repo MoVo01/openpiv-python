@@ -180,13 +180,13 @@ def get_rect_coordinates2(
     # compute grid coordinates of the search area window centers
     # note the field_shape[1] (columns) for x
     y = (
-        np.arange(field_shape[0]) * (window_size[1] - overlap[1])
-        + (window_size[1]) / 2.0
+        np.arange(field_shape[0]) * (window_size[0] - overlap[0])
+        + (window_size[0]) / 2.0
     )
     # note the rows in field_shape[0]
     x = (
-        np.arange(field_shape[1]) * (window_size[0] - overlap[0])
-        + (window_size[0]) / 2.0
+        np.arange(field_shape[1]) * (window_size[1] - overlap[1])
+        + (window_size[1]) / 2.0
     )
     X,Y = np.meshgrid(x, y)
     
