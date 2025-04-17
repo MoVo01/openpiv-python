@@ -156,6 +156,43 @@ def get_coordinates(
     return (X, Y)
 
 
+def get_rect_coordinates2(
+    image_size: Tuple[int,int],
+    window_size: Union[int, Tuple[int,int]],
+    overlap: Union[int, Tuple[int,int]],
+    center_on_field: bool=False,
+    ):
+    '''
+    Rectangular grid version of get_coordinates.
+    '''
+    if isinstance(window_size, int):
+        window_size = (window_size, window_size)
+    if isinstance(overlap, int):
+        overlap = (overlap, overlap)
+
+
+    # get shape of the resulting flow field as a 2 component array 
+    field_shape = get_field_shape(image_size,
+                                  window_size,
+                                  overlap
+                                  )
+
+    # compute grid coordinates of the search area window centers
+    # note the field_shape[1] (columns) for x
+    y = (
+        np.arange(field_shape[0]) * (window_size[1] - overlap[1])
+        + (window_size[1]) / 2.0
+    )
+    # note the rows in field_shape[0]
+    x = (
+        np.arange(field_shape[1]) * (window_size[0] - overlap[0])
+        + (window_size[0]) / 2.0
+    )
+    X,Y = np.meshgrid(x, y)
+    
+    return (X, Y)
+
+
 def get_rect_coordinates(
     image_size: Tuple[int,int],
     window_size: Union[int, Tuple[int,int]],
@@ -178,6 +215,9 @@ def get_rect_coordinates(
     X,Y = np.meshgrid(x[0,:], y[:,0])
     
     return (X, Y)
+
+
+
 
 
 def sliding_window_array(
