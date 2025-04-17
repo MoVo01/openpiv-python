@@ -156,7 +156,7 @@ def get_coordinates(
     return (X, Y)
 
 
-def get_rect_coordinates2(
+def get_rect_coordinates(
     image_size: Tuple[int,int],
     window_size: Union[int, Tuple[int,int]],
     overlap: Union[int, Tuple[int,int]],
@@ -193,7 +193,7 @@ def get_rect_coordinates2(
     return (X, Y)
 
 
-def get_rect_coordinates(
+def get_rect_coordinates2(
     image_size: Tuple[int,int],
     window_size: Union[int, Tuple[int,int]],
     overlap: Union[int, Tuple[int,int]],
