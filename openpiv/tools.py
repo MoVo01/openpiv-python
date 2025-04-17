@@ -61,6 +61,7 @@ def display_vector_field_from_arrays(
     ax: Optional[Any] = None,
     width: Optional[float] = 0.0025,
     show_invalid: Optional[bool] = True,
+    show_plot: Optional[bool] = False,
     **kw
 ):
     """ Displays quiver plot of the data in five arrays: x,y,u,v and flags 
@@ -176,8 +177,8 @@ def display_vector_field_from_arrays(
 
     ax.set_aspect(1.)
     # fig.canvas.set_window_title('Vector field, '+str(np.count_nonzero(invalid))+' wrong vectors')
-
-    plt.show()
+    if show_plot:
+        plt.show()
 
     return fig, ax
 
